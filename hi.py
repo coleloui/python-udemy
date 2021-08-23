@@ -6,9 +6,13 @@ a = 10
 
 a = a + a
 
-type(a)
+# type(a)
 
-print(a)
+c = 3 + 1.5 + 4
+
+type(c)
+
+# print(a)
 
 # my_income = 100
 # tax_rate = 0.1
