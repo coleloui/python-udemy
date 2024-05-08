@@ -10,6 +10,8 @@ print(type(a))
 
 c = 3 + 1.5 + 4
 
+print(3 + 1.5 + 4)
+
 type(c)
 
 print(a)
