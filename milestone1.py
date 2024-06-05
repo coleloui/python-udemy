@@ -11,7 +11,9 @@ def accept_input(base):
 
     row, column, value = choice.split(",")
 
-    if row.int() not in [1, 2, 3] or column.int() not in [1, 2, 3]:
+    arr = [1, 2, 3]
+
+    if row.int() not in arr or column.int() not in arr:
         print("you stupid")
         accept_input(base)
     elif value.lower() != "x" or value.lower() != "o":
@@ -25,9 +27,23 @@ def accept_input(base):
         return base
 
 
-def display(row, column, choice):
-    """places choice where it belongs and returns input to user"""
-    return row, column, choice
+def display(base):
+    """Display the current play board"""
+    return print(
+        """
+    {row1column1}|{row1column2}|{row1column3}
+    -----
+    {row2column2}|{row2column2}|{row2column3}
+    -----
+    {row3column1}|{row3column2}|{row3column3}
+     """.format(
+            **base
+        )
+    )
+
+
+def check_winner(base):
+    return {"winner": False, "player": ""}
 
 
 def init():
@@ -45,22 +61,17 @@ def init():
         "row3column3": " ",
     }
 
-    print("Welcome to tic tac toe")
-    print(
-        """
-    {row1column1}|{row1column2}|{row1column3}
-    -----
-    {row2column2}|{row2column2}|{row2column3}
-    -----
-    {row3column1}|{row3column2}|{row3column3}
-     """.format(
-            **base
-        )
-    )
+    winner = False
 
-    choice_arr = accept_input(base)
-    new_base = display(base, *choice_arr)
-    # check winner and recurse if necessary
+    print("Welcome to tic tac toe")
+
+    display(base)
+
+    while not winner:
+        base = accept_input(base)
+        display(base)
+        winner, player = check_winner(base)
+        print(player)
 
 
 init()
